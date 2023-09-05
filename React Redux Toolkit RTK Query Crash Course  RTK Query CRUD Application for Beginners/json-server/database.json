@@ -1,0 +1,34 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "name": "Aleksey",
+      "email": "alonso85@mail.ru"
+    },
+    {
+      "id": 2,
+      "name": "Ivan",
+      "email": "ivan85@mail.ru"
+    },
+    {
+      "id": 3,
+      "name": "Tanya",
+      "email": "Tanya@mail.ru"
+    },
+    {
+      "id": 4,
+      "name": "Misha",
+      "email": "Misha@mail.ru"
+    },
+    {
+      "id": "5",
+      "name": "Boris",
+      "email": "Boris@mail.ru"
+    },
+    {
+      "id": "8",
+      "name": "Maxim",
+      "email": "Maxim@mail.ru"
+    }
+  ]
+}
