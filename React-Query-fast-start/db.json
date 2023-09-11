@@ -1,0 +1,34 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Learn React Query",
+      "completed": true
+    },
+    {
+      "title": "React 18",
+      "completed": false,
+      "id": 2
+    },
+    {
+      "title": "Angulr",
+      "completed": false,
+      "id": 3
+    },
+    {
+      "title": "qwe",
+      "completed": true,
+      "id": 4
+    },
+    {
+      "title": "state",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "title": "sada",
+      "completed": false,
+      "id": 6
+    }
+  ]
+}
