@@ -6,7 +6,7 @@ const maxPostPage = 10;
 
 async function fetchPosts() {
   const response = await fetch(
-    "https://jsonplaceholder.typwerweicode.com/posts?_limit=10&_page=0"
+    "https://jsonplaceholder.typicode.com/posts?_limit=10&_page=0"
   );
   return response.json();
 }
@@ -16,7 +16,9 @@ export function Posts() {
   const [selectedPost, setSelectedPost] = useState(null);
 
   // replace with useQuery
-  const { data, isError, isLoading, error } = useQuery("/posts", fetchPosts);
+  const { data, isError, isLoading, error } = useQuery("/posts", fetchPosts, {
+    staleTime: 2000,
+  });
 
   if (isLoading) return <div>loading...</div>;
 
@@ -28,7 +30,6 @@ export function Posts() {
       <ul>
         {data?.map((post) => (
           <li
-            c
             key={post.id}
             className="post-title"
             onClick={() => setSelectedPost(post)}
