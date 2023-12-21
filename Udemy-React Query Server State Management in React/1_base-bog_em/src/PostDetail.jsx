@@ -29,7 +29,8 @@ export function PostDetail({ post }) {
     isLoading,
     isError,
     error,
-  } = useQuery("comments", () => fetchComments(post.id));
+    refetch,
+  } = useQuery(["comments", post.id], () => fetchComments(post.id));
 
   if (isLoading) return <div>loading...</div>;
 
@@ -39,6 +40,7 @@ export function PostDetail({ post }) {
   return (
     <>
       <h3 style={{ color: "blue" }}>{post.title}</h3>
+      <button onClick={() => refetch()}>Refresh Post</button>
       <button>Delete</button> <button>Update title</button>
       <p>{post.body}</p>
       <h4>Comments</h4>
