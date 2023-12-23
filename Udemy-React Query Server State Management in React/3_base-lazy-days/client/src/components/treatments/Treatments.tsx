@@ -6,7 +6,8 @@ import { Treatment } from './Treatment';
 
 export function Treatments(): ReactElement {
   // replace with data from React Query
-  const treatments = useTreatments();
+  const treatments = useTreatments('!!!!!!LOOOLLL!!!');
+
   return (
     <Box>
       <Heading mt={10} textAlign="center">
