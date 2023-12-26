@@ -16,3 +16,5 @@ export function useTreatments(): Treatment[] {
   const { data = fallback } = useQuery(queryKeys.treatments, getTreatments);
   return data;
 }
+
+export function usePrefetchTreatments(): void {}
