@@ -1,8 +1,13 @@
 /* eslint-disable simple-import-sort/imports */
 // @ts-nocheck
-
 import dayjs from 'dayjs';
-import { Dispatch, SetStateAction, useState, useEffect } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 
 import { axiosInstance } from '../../../axiosInstance';
@@ -62,6 +67,11 @@ export function useAppointments(): UseAppointments {
   //   записи на приёмы, зарезервированные авторизованным пользователем (белым цветом)
   const { user } = useUser();
 
+  const selectFn = useCallback(
+    (data) => getAvailableAppointments(data, user),
+    [user],
+  );
+
   /** ****************** КОНЕЦ 2: фильтрация записей  ******************** */
   /** ****************** НАЧАЛО 3: использование useQuery  ***************************** */
   // вызов useQuery для записей на приёмы на текущий monthYear
@@ -88,6 +98,9 @@ export function useAppointments(): UseAppointments {
   const { data: appointments = fallback } = useQuery(
     [queryKeys.appointments, monthYear.year, monthYear.month],
     () => getAppointments(monthYear.year, monthYear.month),
+    {
+      select: showAll ? undefined : selectFn,
+    },
   );
 
   /** ****************** КОНЕЦ 3: использование useQuery  ******************************* */
