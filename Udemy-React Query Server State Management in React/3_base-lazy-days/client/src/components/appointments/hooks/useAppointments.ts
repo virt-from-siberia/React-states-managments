@@ -17,6 +17,11 @@ import { AppointmentDateMap } from '../types';
 import { getAvailableAppointments } from '../utils';
 import { getMonthYearDetails, getNewMonthYear, MonthYear } from './monthYear';
 
+const commonOptions = {
+  stealTime: 0,
+  cashTime: 300000,
+};
+
 // для вызова useQuery
 async function getAppointments(
   year: string,
@@ -84,6 +89,7 @@ export function useAppointments(): UseAppointments {
     queryClient.prefetchQuery(
       [queryKeys.appointments, nwxtMonthYear.year, nwxtMonthYear.month],
       () => getAppointments(nwxtMonthYear.year, nwxtMonthYear.month),
+      commonOptions,
     );
   }, [useQueryClient, monthYear]);
 
@@ -100,6 +106,10 @@ export function useAppointments(): UseAppointments {
     () => getAppointments(monthYear.year, monthYear.month),
     {
       select: showAll ? undefined : selectFn,
+      refetchOnMount: true,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
+      ...commonOptions,
     },
   );
 
