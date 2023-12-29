@@ -33,19 +33,18 @@ export function useUser(): UseUser {
 
   useQuery(queryKeys.user, () => getUser(user), {
     enabled: !!user,
-    onSuccess: (data) => {
-      setUser(data);
-    },
+    onSuccess: (data) => setUser(data),
   });
 
-  // meant to be called from useAuth
   function updateUser(newUser: User): void {
-    // TODO: update the user in the query cache
+    setUser(newUser);
+    setStoredUser(newUser);
   }
 
   // meant to be called from useAuth
   function clearUser() {
-    // TODO: reset user to null in query cache
+    setUser(null);
+    clearStoredUser();
   }
 
   return { user, updateUser, clearUser };
