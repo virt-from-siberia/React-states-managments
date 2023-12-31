@@ -6,6 +6,7 @@ import jsonpatch from 'fast-json-patch';
 import type { User } from '../../../../../shared/types';
 import { axiosInstance, getJWTHeader } from '../../../axiosInstance';
 import { useUser } from './useUser';
+import { queryKeys } from '../../../react-query/constants';
 
 // for when we need a server function
 async function patchUserOnServer(
@@ -34,14 +35,32 @@ export function usePatchUser(): UseMutateFunction<
   unknown // context type
 > {
   const { user, updateUser } = useUser();
+  const queryClient = useQueryClient();
 
   const { mutate: patchUser } = useMutation(
     (newUserData: User) => patchUserOnServer(newUserData, user),
     {
-      onSuccess: (userData: User | null) => {
-        if (user) {
-          updateUser(userData);
+      onMutate: async (newData: User | null) => {
+        queryClient.cancelQueries([queryKeys.user]);
+
+        const previousUserData: User = queryClient.getQueryData([
+          queryKeys.user,
+        ]);
+
+        updateUser(newData);
+
+        return { previousUserData };
+      },
+      onError: (error, newData, context) => {
+        if (context.previousUserData) {
+          updateUser(context.previousUserData);
         }
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries([queryKeys.user]);
+      },
+      onSuccess: (userData: User | null) => {
+        // if (user) updateUser(userData);
       },
     },
   );
