@@ -13,7 +13,7 @@ export const PostsLists2 = () => {
 
   return (
     <div>
-      <h1>Posts Lists</h1>
+      <h1>Posts Lists2</h1>
       <ol>
         {postsQuery &&
           postsQuery?.data?.map((post) => <li key={post.id}>{post.title}</li>)}

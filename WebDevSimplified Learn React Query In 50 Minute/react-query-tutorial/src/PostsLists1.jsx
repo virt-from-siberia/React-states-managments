@@ -5,6 +5,7 @@ export const PostsLists1 = () => {
   const postsQuery = useQuery({
     queryKey: ["posts"],
     queryFn: getPosts,
+    // refetchInterval: 1000,
   });
 
   if (postsQuery.status === "pending") return <div>Loading...</div>;
