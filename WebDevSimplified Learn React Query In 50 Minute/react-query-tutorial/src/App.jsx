@@ -3,6 +3,8 @@ import { useState } from "react";
 import { PostsLists1 } from "./PostsLists1";
 import { PostsLists2 } from "./PostsLists2";
 import { Post } from "./Post";
+import { CreatePost } from "./CreatePost";
+import { PostListPaginated } from "./PostListPaginated";
 
 import "./App.css";
 
@@ -20,7 +22,20 @@ function App() {
       <button onClick={() => setCurrentPage(<Post id={1} />)}>
         First Post
       </button>
-      {/* <button onClick={() => setCurrentPage(<CreatePost />)}>New Post</button> */}
+      <button
+        onClick={() =>
+          setCurrentPage(<CreatePost setCurrentPage={setCurrentPage} />)
+        }
+      >
+        New Post
+      </button>
+      <button
+        onClick={() => {
+          setCurrentPage(<PostListPaginated />);
+        }}
+      >
+        Post list Paginated
+      </button>
       <br />
       {currentPage}
     </div>
