@@ -20,6 +20,7 @@ function App() {
       <button onClick={() => setCurrentPage(<Post id={1} />)}>
         First Post
       </button>
+      {/* <button onClick={() => setCurrentPage(<CreatePost />)}>New Post</button> */}
       <br />
       {currentPage}
     </div>
