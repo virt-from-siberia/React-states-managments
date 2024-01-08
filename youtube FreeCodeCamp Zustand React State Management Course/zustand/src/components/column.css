@@ -7,3 +7,46 @@
   border-radius: 4px;
   padding: 0.5rem;
 }
+
+.title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-wrapper button {
+  all: unset;
+  background: black;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  height: fit-content;
+  cursor: pointer;
+}
+
+.title-wrapper button:hover {
+  background: var(--COLOR-GRAY-LIGHT);
+}
+
+.modal {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: var(--COLOR-GRAY-LIGHT);
+  padding: 1rem;
+  border-radius: 4px;
+  /* width: 500px;
+  height: 350px; */
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
