@@ -11,7 +11,7 @@ export const Task = ({ title }) => {
   const deleteTask = useStore((store) => store.deleteTask);
 
   return (
-    <div className="task">
+    <div className="task" draggable={true}>
       <div>{task.title}</div>
       <div className="bottom-wrapper">
         <div className="delete" onClick={() => deleteTask(title)}>
